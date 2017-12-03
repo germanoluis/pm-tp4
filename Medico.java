@@ -9,13 +9,13 @@ public class Medico extends Pessoa{
 
 	private String especialidade;
 	private static ArrayList<Medico> medicos = new ArrayList();
-	
+
 	public Medico(String nome, String especialidade, boolean criar) throws Exception {
 		super(nome);
 		this.especialidade = especialidade;
 		if(criar)addMedico(this);
 	}
-	
+
 	public static void initializeList() throws Exception {
 		String str;
 		try {
@@ -28,7 +28,7 @@ public class Medico extends Pessoa{
 		}
 			catch (Exception e) {}
 	}
-	
+
 	public static void addMedico(Medico nome) throws Exception {
 		medicos.add(nome);
 		FileWriter writer = new FileWriter("Medicos.txt");
@@ -38,29 +38,29 @@ public class Medico extends Pessoa{
 			} catch (IOException e) {}
 		writer.close();
 	}
-	
+
 	public static ArrayList<Medico> getMedicosPorEspecialidade(String especialidade){
 		ArrayList<Medico> especializados = new ArrayList<Medico>();
 		for(Medico m : medicos) if(m.especialidade.equals(especialidade)) especializados.add(m);
 		return especializados;
 	}
-	
+
 	public String getNome() {
 		return this.nome;
 	}
-	
+
 	public String getEspecialidade() {
 		return this.especialidade;
 	}
-	
+
 	public static ArrayList<Medico> getListaDeMedicos() {
 		return medicos;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}

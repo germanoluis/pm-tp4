@@ -18,20 +18,20 @@ public class Main {
 		Cliente c2 = new Cliente("Roberval", "SP-51.145.624", "632.487.521.98", "Avenida da Goiaba Podre", "3222-3224", "21/03/1990", true);
 
 		//Cria Exame
-		Exame e1 = new Exame("Raios X", "15", "09:30", "Lucas", "Cartão", true);
-		Exame e2 = new Exame("Raios X", "17", "19:30", "Lucas", "Cartão", true);
-		Exame e3 = new Exame("Raios Y", "15", "09:30", "Lucas", "Cartão", true);
-		Exame e4 = new Exame("Raios G", "10", "09:30", "Lucas", "Cartão", true);
+		Exame e1 = new Exame("Raios X", "15", "09:30", "Lucas", "Cart�o", true);
+		Exame e2 = new Exame("Raios X", "17", "19:30", "Lucas", "Cart�o", true);
+		Exame e3 = new Exame("Raios Y", "15", "09:30", "Lucas", "Cart�o", true);
+		Exame e4 = new Exame("Raios G", "10", "09:30", "Lucas", "Cart�o", true);
 
 		//Cancela Exames
 		Exame.cancelarExame(e1);
 		Exame.cancelarExame(e2);
 
 		//Cria Consulta
-		Consulta con1 = new Consulta("Roberto", "15", "09:30", "Lucas", "Cartão", true);
-		Consulta con2 = new Consulta("Roberto", "17", "17:00", "Lucas", "Cartão", true);
-		Consulta con3 = new Consulta("Luiz", "15", "09:30", "Lucas", "Cartão", true);
-		Consulta con4 = new Consulta("Luiz", "10", "09:30", "Lucas", "Cartão", true);
+		Consulta con1 = new Consulta("Roberto", "15", "09:30", "Lucas", "Cart�o", true);
+		Consulta con2 = new Consulta("Roberto", "17", "17:00", "Lucas", "Cart�o", true);
+		Consulta con3 = new Consulta("Luiz", "15", "09:30", "Lucas", "Cart�o", true);
+		Consulta con4 = new Consulta("Luiz", "10", "09:30", "Lucas", "Cart�o", true);
 
 		//Cancela Consultas
 		Consulta.cancelarConsulta(con1);
@@ -67,6 +67,6 @@ public class Main {
 		//System.out.println(d1.getListaDeMedicos().get(0).getNome());
 		//System.out.println(Cliente.getListaDeClientes().get(0).getRG());
 
-
+		GUI_Inicio inicio = new GUI_Inicio();
 	}
 }

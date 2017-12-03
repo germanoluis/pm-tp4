@@ -10,12 +10,12 @@ import java.util.ArrayList;
 public class Cliente extends Pessoa{
 
 	private static ArrayList<Cliente> clientes = new ArrayList();
-	
+
 	public Cliente(String nome, String rg, String cpf, String endereco, String numero, String nascimento, boolean criar) throws Exception {
 		super(nome, rg, cpf, endereco, numero, nascimento);
 		if(criar)addCliente(this);
 	}
-	
+
 	public static void initializeList() throws Exception {
 		String str;
 		try {
@@ -28,8 +28,8 @@ public class Cliente extends Pessoa{
 		}
 			catch (Exception e) {}
 	}
-	
-	
+
+
 	public static boolean addCliente(Cliente cli) throws IOException {
 		if(!verificaSeExiste(cli)) {
 			clientes.add(cli);
@@ -43,49 +43,49 @@ public class Cliente extends Pessoa{
 		}
 		else return false;
 	}
-	
+
 	public static boolean verificaSeExiste(Cliente cli) {
 		for(Cliente c: clientes)
 			if(c.rg.equals(cli.rg) || c.cpf.equals(cli.cpf)) return true;
 		return false;
 	}
-	
+
 	public String getNome() {
 		return this.nome;
 	}
-	public String getendereco() {
+	public String getEndereco() {
 		return this.endereco;
 	}
 	public String getNumero() {
 		return this.numero;
 	}
-	
+
 	public String getRG() {
 		return this.rg;
 	}
-	
+
 	public String getCPF() {
 		return this.cpf;
 	}
-	
+
 	public static ArrayList<Cliente> getListaDeClientes() {
 		return clientes;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public void setendereco(String endereco) {
+	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	
+
 	public void setRG(String rg) {
 		this.rg = rg;
 	}
-	
+
 	public void setCPF(String cpf) {
 		this.cpf = cpf;
 	}
