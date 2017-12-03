@@ -11,8 +11,8 @@ public class Cliente extends Pessoa{
 
 	private static ArrayList<Cliente> clientes = new ArrayList();
 	
-	public Cliente(String nome, String rg, String cpf, String endereço, String numero, String nascimento, boolean criar) throws Exception {
-		super(nome, rg, cpf, endereço, numero, nascimento);
+	public Cliente(String nome, String rg, String cpf, String endereco, String numero, String nascimento, boolean criar) throws Exception {
+		super(nome, rg, cpf, endereco, numero, nascimento);
 		if(criar)addCliente(this);
 	}
 	
@@ -36,7 +36,7 @@ public class Cliente extends Pessoa{
 			FileWriter writer = new FileWriter("Clientes.txt");
 			for(Cliente c : clientes)
 				try {
-					writer.write(c.nome + "," + c.rg + "," + c.cpf + "," + c.endereço + "," + c.numero + "," + c.nascimento + "\n");
+					writer.write(c.nome + "," + c.rg + "," + c.cpf + "," + c.endereco + "," + c.numero + "," + c.nascimento + "\n");
 				} catch (IOException e) {}
 			writer.close();
 			return true;
@@ -53,8 +53,8 @@ public class Cliente extends Pessoa{
 	public String getNome() {
 		return this.nome;
 	}
-	public String getEndereço() {
-		return this.endereço;
+	public String getendereco() {
+		return this.endereco;
 	}
 	public String getNumero() {
 		return this.numero;
@@ -75,8 +75,8 @@ public class Cliente extends Pessoa{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+	public void setendereco(String endereco) {
+		this.endereco = endereco;
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
