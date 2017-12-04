@@ -57,6 +57,32 @@ public class Consulta {
 		writer.close();
 	}
 
+	public Consulta getConsultaPeloNome(String nome){
+		for(Consulta c : consultas){
+			if(c.nome == nome){
+				return c;
+			}
+		}
+	}
+
+	public String getDadosConsulta(){
+		return "Dia: " + this.dia
+				 + "Nome: " + this.nome
+				 + "Horário: " + this.horario
+				 + "Paciente: " + this.paciente
+				 + "Pagamento: " + this.pagamento;
+	}
+
+	public boolean verificaExistencia(String nome){
+		for(Consulta c : consultas){
+			if(c.nome == nome){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public static void addConsulta(Consulta c) throws Exception {
 		consultas.add(c);
 		FileWriter writer = new FileWriter("Consultas.txt");

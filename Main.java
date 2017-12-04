@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Main {
 	public static void main(String args[]) throws Exception {
+		/*
 		Cliente.initializeList();
 		Exame.initializeList();
 		Medico.initializeList();
@@ -66,6 +67,7 @@ public class Main {
 		//Testes
 		//System.out.println(d1.getListaDeMedicos().get(0).getNome());
 		//System.out.println(Cliente.getListaDeClientes().get(0).getRG());
+		*/
 
 		GUI_Inicio inicio = new GUI_Inicio();
 	}
