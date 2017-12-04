@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class GUI_Inicio implements ActionListener{
 
@@ -48,16 +47,10 @@ public class GUI_Inicio implements ActionListener{
   public void actionPerformed(ActionEvent event){
     if(event.getSource() == botaoAgendamento){
       String cpfCliente = JOptionPane.showInputDialog("Digite o CPF do cliente");
-      System.out.println(cpfCliente);
-
-      ArrayList<Cliente> lista = new ArrayList<Cliente>();
-      for(Cliente l : lista){
-
-      }
 
       if(cpfCliente != null){
         if(Cliente.verificaSeExiste(cpfCliente) == true){
-          System.out.println("Existe!");
+          GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento();
         }
         else{
           GUI_Cadastro_Cliente cadastroCliente = new GUI_Cadastro_Cliente();

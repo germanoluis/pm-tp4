@@ -46,7 +46,7 @@ public class Cliente extends Pessoa{
 
 	public static boolean verificaSeExiste(String cpf) {
 		for(Cliente c: clientes)
-			if(c.cpf == cpf) return true;
+			if(c.cpf.equals(cpf)) return true;
 		return false;
 	}
 
@@ -54,6 +54,15 @@ public class Cliente extends Pessoa{
 		for(Cliente c: clientes)
 			if(c.rg.equals(cli.rg) || c.cpf.equals(cli.cpf)) return true;
 		return false;
+	}
+
+	public String getDadosCliente(){
+		return "Nome: " + this.nome + "\n"
+				 + "RG: " + this.rg + "\n"
+				 + "CPF: " + this.cpf + "\n"
+				 + "Endereço: " + this.endereco + "\n"
+				 + "Telefone: " + this.numero + "\n"
+				 + "Data de nascimento: " + this.nascimento;
 	}
 
 	public String getNome() {

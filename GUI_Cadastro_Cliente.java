@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class GUI_Cadastro_Cliente implements ActionListener{
 
-  private JFrame frame;
+  public JFrame frame;
   private Container masterPane;
   private JPanel panelNome, panelRG, panelCPF, panelEndereco, panelTelefone, panelDataDeNascimento, panelBotoes;
   private JLabel labelNome, labelRG, labelCPF, labelEndereco, labelTelefone, labelDataDeNascimento;
@@ -98,6 +98,7 @@ public class GUI_Cadastro_Cliente implements ActionListener{
       } catch(Exception e){}
       JOptionPane.showMessageDialog(frame, "Cliente cadastrado com sucesso!");
       frame.dispose();
+      GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento();
     }
     else if(event.getSource() == botaoCancelar){
       frame.dispose();
