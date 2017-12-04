@@ -58,6 +58,12 @@ public class GUI_Tipo_Atendimento implements ActionListener{
 
   public void actionPerformed(ActionEvent event){
     if(event.getSource() == botaoOK){
+      if(groupTipoAtendimento.getSelection().getActionCommand() == "Consulta"){
+        GUI_Agendamento_Consulta agendamentoConsulta = new GUI_Agendamento_Consulta();
+      }
+      else{
+      }
+      frame.dispose();
     }
     else if(event.getSource() == botaoCancelar){
       frame.dispose();

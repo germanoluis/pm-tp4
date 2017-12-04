@@ -1,10 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.IOException;
 
 public class GUI_Cadastro_Cliente implements ActionListener{
 
-  public JFrame frame;
+  private JFrame frame;
   private Container masterPane;
   private JPanel panelNome, panelRG, panelCPF, panelEndereco, panelTelefone, panelDataDeNascimento, panelBotoes;
   private JLabel labelNome, labelRG, labelCPF, labelEndereco, labelTelefone, labelDataDeNascimento;
@@ -93,12 +94,18 @@ public class GUI_Cadastro_Cliente implements ActionListener{
       telefone = textFieldTelefone.getText();
       dataDeNascimento = textFieldDataDeNascimento.getText();
 
+      Cliente c = new Cliente(nome, rg, cpf, endereco, telefone, dataDeNascimento);
+
       try{
-        Cliente c = new Cliente(nome, rg, cpf, endereco, telefone, dataDeNascimento, true);
-      } catch(Exception e){}
-      JOptionPane.showMessageDialog(frame, "Cliente cadastrado com sucesso!");
-      frame.dispose();
-      GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento();
+        if(Cliente.addCliente(c) == true){
+          JOptionPane.showMessageDialog(frame, "Cliente cadastrado com sucesso!");
+          frame.dispose();
+          GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento();
+        }
+        else{
+          JOptionPane.showMessageDialog(frame, "Cliente já cadastrado. Tente novamente.");
+        }
+      } catch(IOException e){}
     }
     else if(event.getSource() == botaoCancelar){
       frame.dispose();

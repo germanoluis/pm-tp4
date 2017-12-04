@@ -69,6 +69,8 @@ public class Main {
 		//System.out.println(Cliente.getListaDeClientes().get(0).getRG());
 		*/
 
+		Medico.initializeList();
+
 		GUI_Inicio inicio = new GUI_Inicio();
 	}
 }

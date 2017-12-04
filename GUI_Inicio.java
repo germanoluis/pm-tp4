@@ -53,6 +53,7 @@ public class GUI_Inicio implements ActionListener{
           GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento();
         }
         else{
+          JOptionPane.showMessageDialog(frame, "Cliente não cadastrado.");
           GUI_Cadastro_Cliente cadastroCliente = new GUI_Cadastro_Cliente();
         }
       }

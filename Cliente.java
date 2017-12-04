@@ -11,9 +11,8 @@ public class Cliente extends Pessoa{
 
 	private static ArrayList<Cliente> clientes = new ArrayList();
 
-	public Cliente(String nome, String rg, String cpf, String endereco, String numero, String nascimento, boolean criar) throws Exception {
+	public Cliente(String nome, String rg, String cpf, String endereco, String numero, String nascimento) {
 		super(nome, rg, cpf, endereco, numero, nascimento);
-		if(criar)addCliente(this);
 	}
 
 	public static void initializeList() throws Exception {
@@ -22,7 +21,7 @@ public class Cliente extends Pessoa{
 			BufferedReader br = new BufferedReader(new FileReader("Clientes.txt"));
 			while ((str = br.readLine()) != null) {
 				String[] dados = str.split(",");
-				Cliente c = new Cliente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], false);
+				Cliente c = new Cliente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5]);
 				clientes.add(c);
 			}
 		}
