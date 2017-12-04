@@ -44,6 +44,12 @@ public class Cliente extends Pessoa{
 		else return false;
 	}
 
+	public static boolean verificaSeExiste(String cpf) {
+		for(Cliente c: clientes)
+			if(c.cpf == cpf) return true;
+		return false;
+	}
+
 	public static boolean verificaSeExiste(Cliente cli) {
 		for(Cliente c: clientes)
 			if(c.rg.equals(cli.rg) || c.cpf.equals(cli.cpf)) return true;

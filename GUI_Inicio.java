@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class GUI_Inicio implements ActionListener{
 
@@ -9,7 +10,7 @@ public class GUI_Inicio implements ActionListener{
   private JButton botaoAgendamento, botaoCancelamentoConsulta, botaoCancelamentoExame, botaoFechar;
 
   public GUI_Inicio(){
-    frame = new JFrame("Clínica Saracura");
+    frame = new JFrame("Clínica Saracura - Início");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     pane = frame.getContentPane();
@@ -46,19 +47,36 @@ public class GUI_Inicio implements ActionListener{
 
   public void actionPerformed(ActionEvent event){
     if(event.getSource() == botaoAgendamento){
+      String cpfCliente = JOptionPane.showInputDialog("Digite o CPF do cliente");
+      System.out.println(cpfCliente);
+
+      ArrayList<Cliente> lista = new ArrayList<Cliente>();
+      for(Cliente l : lista){
+
+      }
+
+      if(cpfCliente != null){
+        if(Cliente.verificaSeExiste(cpfCliente) == true){
+          System.out.println("Existe!");
+        }
+        else{
+          GUI_Cadastro_Cliente cadastroCliente = new GUI_Cadastro_Cliente();
+        }
+      }
     }
     else if(event.getSource() == botaoCancelamentoConsulta){
       String nomeCliente = JOptionPane.showInputDialog("Digite o nome do cliente");
-      System.out.println(nomeCliente);
 
       Consulta c = new Consulta();
 
       if(c.verificaExistencia(nomeCliente) == true){
         c = c.getConsultaPeloNome(nomeCliente);
+
         JOptionPane.showMessageDialog(frame, c.getDadosConsulta());
+
         try{
           Consulta.cancelarConsulta(c);
-        } catch(Exception e){}
+        } catch(Exception e2){}
       }
       else{
         JOptionPane.showMessageDialog(frame, "Não existem consultas cadastradas para o cliente informado.");

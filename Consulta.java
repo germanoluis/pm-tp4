@@ -13,6 +13,9 @@ public class Consulta {
 	private String pagamento;
 	private static ArrayList<Consulta> consultas = new ArrayList();
 
+	public Consulta(){
+	}
+
 	public Consulta(String nome, String dia, String horario, String paciente, String pagamento, boolean criar) throws Exception {
 		this.nome=nome;
 		this.dia=dia;
@@ -57,14 +60,6 @@ public class Consulta {
 		writer.close();
 	}
 
-	public Consulta getConsultaPeloNome(String nome){
-		for(Consulta c : consultas){
-			if(c.nome == nome){
-				return c;
-			}
-		}
-	}
-
 	public String getDadosConsulta(){
 		return "Dia: " + this.dia
 				 + "Nome: " + this.nome
@@ -81,6 +76,18 @@ public class Consulta {
 		}
 
 		return false;
+	}
+
+	public Consulta getConsultaPeloNome(String nome){
+		Consulta consulta = new Consulta();
+
+		for(Consulta c : consultas){
+			if(c.nome == nome){
+				consulta = c;
+			}
+		}
+
+		return consulta;
 	}
 
 	public static void addConsulta(Consulta c) throws Exception {
