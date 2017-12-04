@@ -51,7 +51,7 @@ public class GUI_Tipo_Atendimento implements ActionListener{
     botaoCancelar.addActionListener(this);
     masterPane.add(panelBotoes);
 
-    frame.pack();
+    frame.setSize(370, 110);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
@@ -60,6 +60,7 @@ public class GUI_Tipo_Atendimento implements ActionListener{
     if(event.getSource() == botaoOK){
     }
     else if(event.getSource() == botaoCancelar){
+      frame.dispose();
     }
   }
 

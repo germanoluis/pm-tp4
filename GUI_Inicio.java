@@ -60,19 +60,21 @@ public class GUI_Inicio implements ActionListener{
     else if(event.getSource() == botaoCancelamentoConsulta){
       String nomeCliente = JOptionPane.showInputDialog("Digite o nome do cliente");
 
-      Consulta c = new Consulta();
+      if(nomeCliente != null){
+        Consulta c = new Consulta();
 
-      if(c.verificaExistencia(nomeCliente) == true){
-        c = c.getConsultaPeloNome(nomeCliente);
+        if(c.verificaExistencia(nomeCliente) == true){
+          c = c.getConsultaPeloNome(nomeCliente);
 
-        JOptionPane.showMessageDialog(frame, c.getDadosConsulta());
+          JOptionPane.showMessageDialog(frame, c.getDadosConsulta());
 
-        try{
-          Consulta.cancelarConsulta(c);
-        } catch(Exception e2){}
-      }
-      else{
-        JOptionPane.showMessageDialog(frame, "Não existem consultas cadastradas para o cliente informado.");
+          try{
+            Consulta.cancelarConsulta(c);
+          } catch(Exception e2){}
+        }
+        else{
+          JOptionPane.showMessageDialog(frame, "Não existem consultas cadastradas para o cliente informado.");
+        }
       }
     }
     else if(event.getSource() == botaoCancelamentoExame){
