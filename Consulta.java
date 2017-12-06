@@ -13,9 +13,6 @@ public class Consulta {
 	private String pagamento;
 	private static ArrayList<Consulta> consultas = new ArrayList();
 
-	public Consulta(){
-	}
-
 	public Consulta(String nome, String dia, String horario, String paciente, String pagamento, boolean criar) throws Exception {
 		this.nome=nome;
 		this.dia=dia;
@@ -33,8 +30,7 @@ public class Consulta {
 				Consulta c = new Consulta(str, str = br.readLine(), str = br.readLine(), str = br.readLine(), str = br.readLine(), false);
 				consultas.add(c);
 			}
-		}
-			catch (Exception e) {}
+		} catch (Exception e) {}
 	}
 
 	public void marcar(String nome, String dia, String horario) throws Exception {
@@ -58,36 +54,6 @@ public class Consulta {
 				writer.write(consulta.nome + "\n" + consulta.dia + "\n" + consulta.horario + "\n" + consulta.paciente + "\n" + consulta.pagamento + "\n");
 			} catch (Exception e) {}
 		writer.close();
-	}
-
-	public String getDadosConsulta(){
-		return "Dia: " + this.dia
-				 + "Nome: " + this.nome
-				 + "Horário: " + this.horario
-				 + "Paciente: " + this.paciente
-				 + "Pagamento: " + this.pagamento;
-	}
-
-	public boolean verificaExistencia(String nome){
-		for(Consulta c : consultas){
-			if(c.nome == nome){
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public Consulta getConsultaPeloNome(String nome){
-		Consulta consulta = new Consulta();
-
-		for(Consulta c : consultas){
-			if(c.nome == nome){
-				consulta = c;
-			}
-		}
-
-		return consulta;
 	}
 
 	public static void addConsulta(Consulta c) throws Exception {

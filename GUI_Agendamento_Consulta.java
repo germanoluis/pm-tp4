@@ -95,13 +95,13 @@ public class GUI_Agendamento_Consulta implements ActionListener{
     radioCheque.setAlignmentX(Component.LEFT_ALIGNMENT);
     groupFormaPagamento.add(radioCheque);
     panelFormaPagamento.add(radioCheque);
-    radioCartaoDebito = new JRadioButton("Cartao de débito");
-    radioCartaoDebito.setActionCommand("Cartao de débito");
+    radioCartaoDebito = new JRadioButton("Cartão de débito");
+    radioCartaoDebito.setActionCommand("Cartão de débito");
     radioCartaoDebito.setAlignmentX(Component.LEFT_ALIGNMENT);
     groupFormaPagamento.add(radioCartaoDebito);
     panelFormaPagamento.add(radioCartaoDebito);
-    radioCartaoCredito = new JRadioButton("Cartao de crédito");
-    radioCartaoCredito.setActionCommand("Cartao de crédito");
+    radioCartaoCredito = new JRadioButton("Cartão de crédito");
+    radioCartaoCredito.setActionCommand("Cartão de crédito");
     radioCartaoCredito.setAlignmentX(Component.LEFT_ALIGNMENT);
     groupFormaPagamento.add(radioCartaoCredito);
     panelFormaPagamento.add(radioCartaoCredito);
@@ -131,7 +131,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
     botaoCancelar.addActionListener(this);
     masterPane.add(panelBotoes);
 
-    frame.setSize(410, 400);
+    frame.setSize(510, 350);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
@@ -176,7 +176,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                 comboBoxHorario.addItem(c.getHorario());
               }
             }
-          } catch(Exception e1){}
+          } catch(Exception e){}
         }
       }
     }
@@ -210,7 +210,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                   cliente.getNome(),
                                                   groupFormaPagamento.getSelection().getActionCommand(),
                                                   true);
-               } catch(Exception e2){}
+               } catch(Exception e){}
                JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
              }
              else{
@@ -230,7 +230,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                     cliente.getNome(),
                                                     groupFormaPagamento.getSelection().getActionCommand(),
                                                     true);
-                 } catch(Exception e2){}
+                 } catch(Exception e){}
                  JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
                }
                else{
@@ -249,7 +249,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                     cliente.getNome(),
                                                     groupFormaPagamento.getSelection().getActionCommand(),
                                                     true);
-                 } catch(Exception e3){}
+                 } catch(Exception e){}
                  JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
                }
                else{
@@ -268,7 +268,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                     cliente.getNome(),
                                                     groupFormaPagamento.getSelection().getActionCommand(),
                                                     true);
-                 } catch(Exception e4){}
+                 } catch(Exception e){}
                  JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
                }
                else{
@@ -295,7 +295,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                     cliente.getNome(),
                                                     groupFormaPagamento.getSelection().getActionCommand(),
                                                     true);
-                 } catch(Exception e4){}
+                 } catch(Exception e){}
                  JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
                }
                else{

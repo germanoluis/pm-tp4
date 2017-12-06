@@ -11,8 +11,11 @@ public class Cliente extends Pessoa{
 
 	private static ArrayList<Cliente> clientes = new ArrayList();
 
-	public Cliente(String nome, String rg, String cpf, String endereco, String numero, String nascimento) {
+	public Cliente(String nome, String rg, String cpf, String endereco, String numero, String nascimento, boolean criar) {
 		super(nome, rg, cpf, endereco, numero, nascimento);
+		try{
+			if(criar)addCliente(this);
+		} catch(IOException e) {}
 	}
 
 	public static void initializeList() throws Exception {
@@ -21,13 +24,11 @@ public class Cliente extends Pessoa{
 			BufferedReader br = new BufferedReader(new FileReader("Clientes.txt"));
 			while ((str = br.readLine()) != null) {
 				String[] dados = str.split(",");
-				Cliente c = new Cliente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5]);
+				Cliente c = new Cliente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], true);
 				clientes.add(c);
 			}
-		}
-			catch (Exception e) {}
+		} catch (Exception e) {}
 	}
-
 
 	public static boolean addCliente(Cliente cli) throws IOException {
 		if(!verificaSeExiste(cli)) {
@@ -43,33 +44,20 @@ public class Cliente extends Pessoa{
 		else return false;
 	}
 
-	public static boolean verificaSeExiste(String cpf) {
-		for(Cliente c: clientes)
-			if(c.cpf.equals(cpf)) return true;
-		return false;
-	}
-
 	public static boolean verificaSeExiste(Cliente cli) {
 		for(Cliente c: clientes)
 			if(c.rg.equals(cli.rg) || c.cpf.equals(cli.cpf)) return true;
 		return false;
 	}
 
-	public String getDadosCliente(){
-		return "Nome: " + this.nome + "\n"
-				 + "RG: " + this.rg + "\n"
-				 + "CPF: " + this.cpf + "\n"
-				 + "Endereço: " + this.endereco + "\n"
-				 + "Telefone: " + this.numero + "\n"
-				 + "Data de nascimento: " + this.nascimento;
-	}
-
 	public String getNome() {
 		return this.nome;
 	}
+
 	public String getEndereco() {
 		return this.endereco;
 	}
+
 	public String getNumero() {
 		return this.numero;
 	}
@@ -89,9 +77,11 @@ public class Cliente extends Pessoa{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
@@ -103,4 +93,5 @@ public class Cliente extends Pessoa{
 	public void setCPF(String cpf) {
 		this.cpf = cpf;
 	}
+
 }

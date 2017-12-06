@@ -48,3 +48,18 @@ Roberto Justos
 10:00
 
 Cheque
+Luiz
+02
+09:00
+
+Dinheiro
+Luiz
+02
+10:30
+
+Dinheiro
+Luiz
+12
+08:30
+
+Cartão de débito

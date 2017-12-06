@@ -94,9 +94,9 @@ public class GUI_Cadastro_Cliente implements ActionListener{
       telefone = textFieldTelefone.getText();
       dataDeNascimento = textFieldDataDeNascimento.getText();
 
-      Cliente c = new Cliente(nome, rg, cpf, endereco, telefone, dataDeNascimento);
-
       try{
+        Cliente c = new Cliente(nome, rg, cpf, endereco, telefone, dataDeNascimento, false);
+
         if(Cliente.addCliente(c) == true){
           JOptionPane.showMessageDialog(frame, "Cliente cadastrado com sucesso!");
           frame.dispose();
@@ -105,7 +105,7 @@ public class GUI_Cadastro_Cliente implements ActionListener{
         else{
           JOptionPane.showMessageDialog(frame, "Cliente já cadastrado. Tente novamente.");
         }
-      } catch(IOException e){}
+      } catch(Exception e){}
     }
     else if(event.getSource() == botaoCancelar){
       frame.dispose();

@@ -61,7 +61,7 @@ public class GUI_Inicio implements ActionListener{
       String cpfCliente = JOptionPane.showInputDialog("Digite o CPF do cliente");
 
       if(cpfCliente != null){
-        Cliente cliente = new Cliente("", "", cpfCliente, "", "", "");
+        Cliente cliente = new Cliente("", "", cpfCliente, "", "", "", false);
 
         if(Cliente.verificaSeExiste(cliente) == true){
           GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(cliente);
@@ -76,20 +76,6 @@ public class GUI_Inicio implements ActionListener{
       String nomeCliente = JOptionPane.showInputDialog("Digite o nome do cliente");
 
       if(nomeCliente != null){
-        Consulta c = new Consulta();
-
-        if(c.verificaExistencia(nomeCliente) == true){
-          c = c.getConsultaPeloNome(nomeCliente);
-
-          JOptionPane.showMessageDialog(frame, c.getDadosConsulta());
-
-          try{
-            Consulta.cancelarConsulta(c);
-          } catch(Exception e2){}
-        }
-        else{
-          JOptionPane.showMessageDialog(frame, "Não existem consultas cadastradas para o cliente informado.");
-        }
       }
     }
     else if(event.getSource() == botaoCancelamentoExame){
