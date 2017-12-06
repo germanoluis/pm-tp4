@@ -121,7 +121,7 @@ public class Consulta {
 		return true;
 	}
 
-	public static ArrayList<Consulta> horariosDiponiveis(String nome) throws Exception {
+	public static ArrayList<Consulta> horariosDisponiveis(String nome) throws Exception {
 		ArrayList<Consulta> h_disponiveis = new ArrayList<Consulta>();
 		String[] dias = {"01", "02", "03", "04", "05", "08", "09", "10", "11", "12", "15", "16", "17", "18", "19", "20", "23", "24", "25", "26", "27", "28"};
 		String[] horarios = {"08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"};
