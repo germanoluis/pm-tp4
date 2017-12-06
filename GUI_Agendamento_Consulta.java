@@ -7,10 +7,11 @@ public class GUI_Agendamento_Consulta implements ActionListener{
 
   private JFrame frame;
   private Container masterPane;
-  private JPanel panelEspecialidade, panelMedicos, panelDia, panelHorario;
+  private JPanel panelEspecialidade, panelMedicos, panelDia, panelHorario, panelBotoes;
   private JLabel labelEspecialidade, labelMedicos, labelDia, labelHorario;
+  private JButton botaoOK, botaoCancelar;
   private JComboBox<String> comboBoxEspecialidade, comboBoxMedicos, comboBoxDia, comboBoxHorario;
-  private String especialidade, medico, dia;
+  private String especialidade, medico, dia, horario;
   private String especialidades[] = new String[] {"",
                                                   "Urologista",
                                                   "Cardiologista",
@@ -21,6 +22,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                            "08", "09", "10", "11", "12",
                            "15", "16", "17", "18", "19", "20",
                            "23", "24", "25", "26", "27", "28"};
+  private Consulta c;
 
   public GUI_Agendamento_Consulta(){
     frame = new JFrame("Clínica Saracura - Agendamento de consulta");
@@ -64,7 +66,21 @@ public class GUI_Agendamento_Consulta implements ActionListener{
     panelHorario.add(comboBoxHorario);
     masterPane.add(panelHorario);
 
-    frame.pack();
+    panelBotoes = new JPanel();
+    panelBotoes.setAlignmentX(Component.CENTER_ALIGNMENT);
+    botaoOK = new JButton("OK");
+    botaoOK.setPreferredSize(new Dimension(120, 35));
+    botaoOK.setMaximumSize(new Dimension(120, 35));
+    panelBotoes.add(botaoOK);
+    botaoOK.addActionListener(this);
+    botaoCancelar = new JButton("Cancelar");
+    botaoCancelar.setPreferredSize(new Dimension(120, 35));
+    botaoCancelar.setMaximumSize(new Dimension(120, 35));
+    panelBotoes.add(botaoCancelar);
+    botaoCancelar.addActionListener(this);
+    masterPane.add(panelBotoes);
+
+    frame.setSize(410, 230);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
@@ -112,6 +128,11 @@ public class GUI_Agendamento_Consulta implements ActionListener{
           } catch(Exception e){}
         }
       }
+    }
+    else if(event.getSource() == botaoOK){
+    }
+    else if(event.getSource() == botaoCancelar){
+      frame.dispose();
     }
   }
 

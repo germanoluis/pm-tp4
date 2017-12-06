@@ -80,7 +80,7 @@ public class GUI_Cadastro_Cliente implements ActionListener{
     botaoCancelar.addActionListener(this);
     masterPane.add(panelBotoes);
 
-    frame.pack();
+    frame.setSize(530, 320);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
