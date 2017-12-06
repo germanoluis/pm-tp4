@@ -8,3 +8,43 @@ Luiz
 09:30
 Lucas
 Cart�o
+Luiz
+03
+09:00
+
+Dinheiro
+Luiz
+02
+08:30
+
+Dinheiro
+Luiz
+03
+09:30
+
+Dinheiro
+Roberto Justos
+02
+09:00
+
+Cheque
+Roberto
+02
+08:30
+asdasdasdasdasdasd
+Cheque
+Roberto Justos
+03
+08:30
+
+Cartao de débito
+Luiz
+02
+09:30
+Gleison
+Dinheiro
+Roberto Justos
+02
+10:00
+
+Cheque

@@ -12,7 +12,7 @@ public class GUI_Tipo_Atendimento implements ActionListener{
   private ButtonGroup groupTipoAtendimento;
   private JButton botaoOK, botaoCancelar;
 
-  public GUI_Tipo_Atendimento(){
+  public GUI_Tipo_Atendimento(Cliente cliente){
     frame = new JFrame("Clínica Saracura - Tipo de atendimento");
 
     masterPane = frame.getContentPane();
@@ -43,6 +43,7 @@ public class GUI_Tipo_Atendimento implements ActionListener{
     botaoOK.setPreferredSize(new Dimension(120, 35));
     botaoOK.setMaximumSize(new Dimension(120, 35));
     panelBotoes.add(botaoOK);
+    botaoOK.putClientProperty("Cliente", cliente);
     botaoOK.addActionListener(this);
     botaoCancelar = new JButton("Cancelar");
     botaoCancelar.setPreferredSize(new Dimension(120, 35));
@@ -59,7 +60,8 @@ public class GUI_Tipo_Atendimento implements ActionListener{
   public void actionPerformed(ActionEvent event){
     if(event.getSource() == botaoOK){
       if(groupTipoAtendimento.getSelection().getActionCommand() == "Consulta"){
-        GUI_Agendamento_Consulta agendamentoConsulta = new GUI_Agendamento_Consulta();
+        Cliente cliente = (Cliente)(botaoOK.getClientProperty("Cliente"));
+        GUI_Agendamento_Consulta agendamentoConsulta = new GUI_Agendamento_Consulta(cliente);
       }
       else{
       }

@@ -3,6 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GUI_Inicio implements ActionListener{
 
@@ -60,8 +61,10 @@ public class GUI_Inicio implements ActionListener{
       String cpfCliente = JOptionPane.showInputDialog("Digite o CPF do cliente");
 
       if(cpfCliente != null){
-        if(Cliente.verificaSeExiste(cpfCliente) == true){
-          GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento();
+        Cliente cliente = new Cliente("", "", cpfCliente, "", "", "");
+
+        if(Cliente.verificaSeExiste(cliente) == true){
+          GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(cliente);
         }
         else{
           JOptionPane.showMessageDialog(frame, "Cliente não cadastrado.");

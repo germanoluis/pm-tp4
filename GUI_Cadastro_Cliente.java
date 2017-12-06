@@ -100,7 +100,7 @@ public class GUI_Cadastro_Cliente implements ActionListener{
         if(Cliente.addCliente(c) == true){
           JOptionPane.showMessageDialog(frame, "Cliente cadastrado com sucesso!");
           frame.dispose();
-          GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento();
+          GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(c);
         }
         else{
           JOptionPane.showMessageDialog(frame, "Cliente já cadastrado. Tente novamente.");
