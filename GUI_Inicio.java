@@ -1,12 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 
 public class GUI_Inicio implements ActionListener{
 
   private JFrame frame;
   private Container pane;
   private JButton botaoAgendamento, botaoCancelamentoConsulta, botaoCancelamentoExame, botaoFechar;
+  private ImageIcon iconeBotaoAgendamento, iconeBotaoCancelamentoConsulta, iconeBotaoCancelamentoExame, iconeBotaoFechar;
 
   public GUI_Inicio(){
     frame = new JFrame("Clínica Saracura - Início");
@@ -18,24 +21,32 @@ public class GUI_Inicio implements ActionListener{
     botaoAgendamento = new JButton("Agendamento");
     botaoAgendamento.setPreferredSize(new Dimension(450, 50));
     botaoAgendamento.setMaximumSize(new Dimension(450, 50));
+    iconeBotaoAgendamento = new ImageIcon("imagens/agendamento.png");
+    botaoAgendamento.setIcon(redimensionaIcone(iconeBotaoAgendamento, 40, 40));
     pane.add(botaoAgendamento);
     botaoAgendamento.addActionListener(this);
 
     botaoCancelamentoConsulta = new JButton("Cancelamento de consulta");
     botaoCancelamentoConsulta.setPreferredSize(new Dimension(450, 50));
     botaoCancelamentoConsulta.setMaximumSize(new Dimension(450, 50));
+    iconeBotaoCancelamentoConsulta = new ImageIcon("imagens/cancelamentoConsulta.png");
+    botaoCancelamentoConsulta.setIcon(redimensionaIcone(iconeBotaoCancelamentoConsulta, 30, 30));
     pane.add(botaoCancelamentoConsulta);
     botaoCancelamentoConsulta.addActionListener(this);
 
     botaoCancelamentoExame = new JButton("Cancelamento de exame");
     botaoCancelamentoExame.setPreferredSize(new Dimension(450, 50));
     botaoCancelamentoExame.setMaximumSize(new Dimension(450, 50));
+    iconeBotaoCancelamentoExame = new ImageIcon("imagens/cancelamentoExame.png");
+    botaoCancelamentoExame.setIcon(redimensionaIcone(iconeBotaoCancelamentoExame, 30, 30));
     pane.add(botaoCancelamentoExame);
     botaoCancelamentoExame.addActionListener(this);
 
     botaoFechar = new JButton("Fechar");
     botaoFechar.setPreferredSize(new Dimension(450, 50));
     botaoFechar.setMaximumSize(new Dimension(450, 50));
+    iconeBotaoFechar = new ImageIcon("imagens/fechar.png");
+    botaoFechar.setIcon(redimensionaIcone(iconeBotaoFechar, 30, 30));
     pane.add(botaoFechar);
     botaoFechar.addActionListener(this);
 
@@ -83,6 +94,12 @@ public class GUI_Inicio implements ActionListener{
     else if(event.getSource() == botaoFechar){
       System.exit(0);
     }
+  }
+
+  private Icon redimensionaIcone(ImageIcon imagemIcone, int novaLargura, int novaAltura){
+    Image imagem = imagemIcone.getImage();
+    Image imagemRedimensionada = imagem.getScaledInstance(novaLargura, novaAltura, java.awt.Image.SCALE_SMOOTH);
+    return new ImageIcon(imagemRedimensionada);
   }
 
 }
