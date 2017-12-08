@@ -59,11 +59,13 @@ public class GUI_Tipo_Atendimento implements ActionListener{
 
   public void actionPerformed(ActionEvent event){
     if(event.getSource() == botaoOK){
+      Cliente cliente = (Cliente)(botaoOK.getClientProperty("Cliente"));
+
       if(groupTipoAtendimento.getSelection().getActionCommand() == "Consulta"){
-        Cliente cliente = (Cliente)(botaoOK.getClientProperty("Cliente"));
         GUI_Agendamento_Consulta agendamentoConsulta = new GUI_Agendamento_Consulta(cliente);
       }
       else{
+        GUI_Agendamento_Exame agendamentoExame = new GUI_Agendamento_Exame(cliente);
       }
       frame.dispose();
     }
