@@ -98,12 +98,18 @@ public class GUI_Cadastro_Cliente implements ActionListener{
         Cliente c = new Cliente(nome, rg, cpf, endereco, telefone, dataDeNascimento, false);
 
         if(Cliente.addCliente(c) == true){
-          JOptionPane.showMessageDialog(frame, "Cliente cadastrado com sucesso!");
+          JOptionPane.showMessageDialog(frame,
+                                        "Cliente cadastrado com sucesso!",
+                                        "Clínica Saracura - Cadastro de cliente",
+                                        JOptionPane.INFORMATION_MESSAGE);
           frame.dispose();
           GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(c);
         }
         else{
-          JOptionPane.showMessageDialog(frame, "Cliente já cadastrado. Tente novamente.");
+          JOptionPane.showMessageDialog(frame,
+                                        "Cliente já cadastrado. Tente novamente.",
+                                        "Clínica Saracura - Cadastro de cliente",
+                                        JOptionPane.ERROR_MESSAGE);
         }
       } catch(Exception e){}
     }

@@ -46,7 +46,7 @@ public class Cliente extends Pessoa{
 
 	public static boolean verificaSeExiste(Cliente cli) {
 		for(Cliente c: clientes)
-			if(c.rg.equals(cli.rg) || c.cpf.equals(cli.cpf)) return true;
+			if(c.cpf.equals(cli.cpf)) return true;
 		return false;
 	}
 

@@ -19,7 +19,14 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                   "Urologista",
                                                   "Cardiologista",
                                                   "Neurologista",
-                                                  "Dermatologista"};
+                                                  "Dermatologista",
+                                                  "Infectologista",
+                                                  "Angiologista",
+                                                  "Nefrologista",
+                                                  "Pediatra",
+                                                  "Psiquiatra",
+                                                  "Otorrinolaringologista",
+                                                  "Ortopedista"};
   private String dias[] = {"",
                            "01", "02", "03", "04", "05",
                            "08", "09", "10", "11", "12",
@@ -29,7 +36,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
   private Consulta c;
 
   public GUI_Agendamento_Consulta(Cliente cliente){
-    frame = new JFrame("Clínica Saracura - Agendamento de consulta");
+    frame = new JFrame("Clínica Saracura - Agendamento");
 
     masterPane = frame.getContentPane();
     masterPane.setLayout(new BoxLayout(masterPane, BoxLayout.Y_AXIS));
@@ -211,7 +218,10 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                   groupFormaPagamento.getSelection().getActionCommand(),
                                                   true);
                } catch(Exception e){}
-               JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
+               JOptionPane.showMessageDialog(frame,
+                                             "Consulta agendada com sucesso!",
+                                             "Clínica Saracusa - Agendamento",
+                                             JOptionPane.INFORMATION_MESSAGE);
              }
              else{
                JOptionPane.showMessageDialog(frame,
@@ -231,7 +241,10 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                     groupFormaPagamento.getSelection().getActionCommand(),
                                                     true);
                  } catch(Exception e){}
-                 JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
+                 JOptionPane.showMessageDialog(frame,
+                                               "Consulta agendada com sucesso!",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.INFORMATION_MESSAGE);
                }
                else{
                  JOptionPane.showMessageDialog(frame,
@@ -250,7 +263,10 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                     groupFormaPagamento.getSelection().getActionCommand(),
                                                     true);
                  } catch(Exception e){}
-                 JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
+                 JOptionPane.showMessageDialog(frame,
+                                               "Consulta agendada com sucesso!",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.INFORMATION_MESSAGE);
                }
                else{
                  JOptionPane.showMessageDialog(frame,
@@ -269,7 +285,10 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                     groupFormaPagamento.getSelection().getActionCommand(),
                                                     true);
                  } catch(Exception e){}
-                 JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
+                 JOptionPane.showMessageDialog(frame,
+                                               "Consulta agendada com sucesso!",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.INFORMATION_MESSAGE);
                }
                else{
                  JOptionPane.showMessageDialog(frame,
@@ -296,7 +315,10 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                     groupFormaPagamento.getSelection().getActionCommand(),
                                                     true);
                  } catch(Exception e){}
-                 JOptionPane.showMessageDialog(frame, "Consulta agendada com sucesso!");
+                 JOptionPane.showMessageDialog(frame,
+                                               "Consulta agendada com sucesso!",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.INFORMATION_MESSAGE);
                }
                else{
                  JOptionPane.showMessageDialog(frame,

@@ -58,7 +58,10 @@ public class GUI_Inicio implements ActionListener{
 
   public void actionPerformed(ActionEvent event){
     if(event.getSource() == botaoAgendamento){
-      String cpfCliente = JOptionPane.showInputDialog("Digite o CPF do cliente");
+      String cpfCliente = JOptionPane.showInputDialog(frame,
+                                                      "Digite o CPF do cliente",
+                                                      "Clínica Saracura - Agendamento",
+                                                      JOptionPane.QUESTION_MESSAGE);
 
       if(cpfCliente != null){
         Cliente cliente = new Cliente("", "", cpfCliente, "", "", "", false);
@@ -67,7 +70,10 @@ public class GUI_Inicio implements ActionListener{
           GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(cliente);
         }
         else{
-          JOptionPane.showMessageDialog(frame, "Cliente não cadastrado.");
+          JOptionPane.showMessageDialog(frame,
+                                        "Cliente não cadastrado.",
+                                        "Clínica Saracura - Agendamento",
+                                        JOptionPane.INFORMATION_MESSAGE);
           GUI_Cadastro_Cliente cadastroCliente = new GUI_Cadastro_Cliente();
         }
       }
