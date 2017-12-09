@@ -1,10 +1,15 @@
-Raios Y
-15
-09:30
-Lucas
-Cart�o
-Raios G
-10
-09:30
-Lucas
-Cart�o
+Tomografia computadorizada
+01
+08:30
+
+Cortesia
+Tomografia computadorizada
+01
+08:00
+
+Cortesia
+Ressonância magnética
+02
+10:00
+
+Cartão de débito

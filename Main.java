@@ -71,6 +71,7 @@ public class Main {
 
 		Medico.initializeList();
 		Consulta.initializeList();
+		Exame.initializeList();
 
 		GUI_Inicio inicio = new GUI_Inicio();
 	}

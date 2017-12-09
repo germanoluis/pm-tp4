@@ -138,7 +138,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
     botaoCancelar.addActionListener(this);
     masterPane.add(panelBotoes);
 
-    frame.setSize(510, 350);
+    frame.setSize(510, 370);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
@@ -215,7 +215,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                   comboBoxDia.getSelectedItem().toString(),
                                                   comboBoxHorario.getSelectedItem().toString(),
                                                   cliente.getNome(),
-                                                  groupFormaPagamento.getSelection().getActionCommand(),
+                                                  "Cortesia",
                                                   true);
                } catch(Exception e){}
                JOptionPane.showMessageDialog(frame,
@@ -312,7 +312,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                                                     comboBoxDia.getSelectedItem().toString(),
                                                     comboBoxHorario.getSelectedItem().toString(),
                                                     cliente.getNome(),
-                                                    groupFormaPagamento.getSelection().getActionCommand(),
+                                                    "Convênio",
                                                     true);
                  } catch(Exception e){}
                  JOptionPane.showMessageDialog(frame,
@@ -328,7 +328,7 @@ public class GUI_Agendamento_Consulta implements ActionListener{
                }
              }
            }
-        frame.dispose();
+           frame.dispose();
       }
       else{
         JOptionPane.showMessageDialog(frame,

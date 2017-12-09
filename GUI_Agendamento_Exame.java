@@ -120,8 +120,7 @@ public class GUI_Agendamento_Exame implements ActionListener{
     botaoCancelar.addActionListener(this);
     masterPane.add(panelBotoes);
 
-    //frame.setSize(510, 350);
-    frame.pack();
+    frame.setSize(510, 350);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
@@ -155,7 +154,154 @@ public class GUI_Agendamento_Exame implements ActionListener{
         }
       }
     }
+    else if(event.getSource() == comboBoxTipoAtendimento){
+      if(comboBoxTipoAtendimento.getSelectedItem().toString() == "Particular"){
+        panelFormaPagamento.setVisible(true);
+        panelRegistroConvenio.setVisible(false);
+      }
+      else if(comboBoxTipoAtendimento.getSelectedItem().toString() == "Convênio"){
+        panelFormaPagamento.setVisible(false);
+        panelRegistroConvenio.setVisible(true);
+      }
+      else{
+        panelFormaPagamento.setVisible(false);
+        panelRegistroConvenio.setVisible(false);
+      }
+    }
     else if(event.getSource() == botaoOK){
+      Cliente cliente = (Cliente)(botaoOK.getClientProperty("Cliente"));
+      if(comboBoxExame.getSelectedItem().toString() != "" &&
+         comboBoxDia.getSelectedItem() != null && comboBoxDia.getSelectedItem().toString() != "" &&
+         comboBoxHorario.getSelectedItem() != null && comboBoxDia.getSelectedItem().toString() != "" &&
+         comboBoxTipoAtendimento.getSelectedItem().toString() != ""){
+           if(comboBoxTipoAtendimento.getSelectedItem().toString() == "Cortesia"){
+             if(Autorizacao.autorizaCortesia() == true){
+               try{
+                 Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
+                                         comboBoxDia.getSelectedItem().toString(),
+                                         comboBoxHorario.getSelectedItem().toString(),
+                                         cliente.getNome(),
+                                         "Cortesia",
+                                         true);
+               } catch(Exception e){}
+               JOptionPane.showMessageDialog(frame,
+                                             "Exame agendado com sucesso!",
+                                             "Clínica Saracusa - Agendamento",
+                                             JOptionPane.INFORMATION_MESSAGE);
+             }
+             else{
+               JOptionPane.showMessageDialog(frame,
+                                             "Exame não agendado.\n\nCortesia recusada.",
+                                             "Clínica Saracusa - Agendamento",
+                                             JOptionPane.ERROR_MESSAGE);
+             }
+           }
+           else if(comboBoxTipoAtendimento.getSelectedItem().toString() == "Particular"){
+             if(groupFormaPagamento.getSelection().getActionCommand() == "Dinheiro"){
+               if(Autorizacao.autorizaDinheiro() == true){
+                 try{
+                   Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
+                                           comboBoxDia.getSelectedItem().toString(),
+                                           comboBoxHorario.getSelectedItem().toString(),
+                                           cliente.getNome(),
+                                           groupFormaPagamento.getSelection().getActionCommand(),
+                                           true);
+                 } catch(Exception e){}
+                 JOptionPane.showMessageDialog(frame,
+                                               "Exame agendado com sucesso!",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.INFORMATION_MESSAGE);
+               }
+               else{
+                 JOptionPane.showMessageDialog(frame,
+                                               "Exame não agendado.\n\nPagamento não autorizado.",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.ERROR_MESSAGE);
+               }
+             }
+             else if(groupFormaPagamento.getSelection().getActionCommand() == "Cheque"){
+               if(Autorizacao.autorizaCheque(cliente.getCPF()) == true){
+                 try{
+                   Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
+                                           comboBoxDia.getSelectedItem().toString(),
+                                           comboBoxHorario.getSelectedItem().toString(),
+                                           cliente.getNome(),
+                                           groupFormaPagamento.getSelection().getActionCommand(),
+                                           true);
+                 } catch(Exception e){}
+                 JOptionPane.showMessageDialog(frame,
+                                               "Exame agendado com sucesso!",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.INFORMATION_MESSAGE);
+               }
+               else{
+                 JOptionPane.showMessageDialog(frame,
+                                               "Exame não agendado.\n\nRecebimento de cheque não autorizado pelo Serasa para o CPF " + cliente.getCPF() + ".",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.ERROR_MESSAGE);
+               }
+             }
+             else{
+               if(Autorizacao.autorizaCartao() == true){
+                 try{
+                   Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
+                                           comboBoxDia.getSelectedItem().toString(),
+                                           comboBoxHorario.getSelectedItem().toString(),
+                                           cliente.getNome(),
+                                           groupFormaPagamento.getSelection().getActionCommand(),
+                                           true);
+                 } catch(Exception e){}
+                 JOptionPane.showMessageDialog(frame,
+                                               "Exame agendado com sucesso!",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.INFORMATION_MESSAGE);
+               }
+               else{
+                 JOptionPane.showMessageDialog(frame,
+                                               "Exame não agendado.\n\nPagamento não autorizado pela operadora do cartão.",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.ERROR_MESSAGE);
+               }
+             }
+           }
+           else{
+             if(textFieldRegistroConvenio.getText() == ""){
+               JOptionPane.showMessageDialog(frame,
+                                             "Os campos não foram preenchidos corretamente.",
+                                             "Clínica Saracusa - Agendamento",
+                                             JOptionPane.ERROR_MESSAGE);
+             }
+             else{
+               if(Autorizacao.autorizaConvenio(cliente.getNome(), textFieldRegistroConvenio.getText()) == true){
+                 try{
+                   Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
+                                           comboBoxDia.getSelectedItem().toString(),
+                                           comboBoxHorario.getSelectedItem().toString(),
+                                           cliente.getNome(),
+                                           "Convênio",
+                                           true);
+                 } catch(Exception e){}
+                 JOptionPane.showMessageDialog(frame,
+                                               "Exame agendado com sucesso!",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.INFORMATION_MESSAGE);
+               }
+               else{
+                 JOptionPane.showMessageDialog(frame,
+                                               "Exame não agendado.\n\nMarcação de consulta não autorizada pelo operador do convênio.",
+                                               "Clínica Saracusa - Agendamento",
+                                               JOptionPane.ERROR_MESSAGE);
+               }
+             }
+           }
+           frame.dispose();
+      }
+      else{
+        JOptionPane.showMessageDialog(frame,
+                                      "Os campos não foram preenchidos corretamente.",
+                                      "Clínica Saracusa - Agendamento",
+                                      JOptionPane.ERROR_MESSAGE);
+      }
     }
     else if(event.getSource() == botaoCancelar){
       frame.dispose();
