@@ -69,6 +69,7 @@ public class Main {
 		//System.out.println(Cliente.getListaDeClientes().get(0).getRG());
 		*/
 
+		Cliente.initializeList();
 		Medico.initializeList();
 		Consulta.initializeList();
 		Exame.initializeList();

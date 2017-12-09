@@ -50,6 +50,12 @@ public class Cliente extends Pessoa{
 		return false;
 	}
 
+	public static boolean verificaSeExiste(String nome) {
+		for(Cliente c : clientes)
+			if(c.nome.equals(nome)) return true;
+		return false;
+	}
+
 	public String getNome() {
 		return this.nome;
 	}

@@ -67,6 +67,13 @@ public class GUI_Inicio implements ActionListener{
         Cliente cliente = new Cliente("", "", cpfCliente, "", "", "", false);
 
         if(Cliente.verificaSeExiste(cliente) == true){
+          ArrayList<Cliente> listaDeClientes = Cliente.getListaDeClientes();
+          for(Cliente c : listaDeClientes){
+            if(c.getCPF().equals(cliente.getCPF())){
+              cliente = c;
+            }
+          }
+
           GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(cliente);
         }
         else{
@@ -79,9 +86,31 @@ public class GUI_Inicio implements ActionListener{
       }
     }
     else if(event.getSource() == botaoCancelamentoConsulta){
-      String nomeCliente = JOptionPane.showInputDialog("Digite o nome do cliente");
+      String nomeCliente = JOptionPane.showInputDialog(frame,
+                                                       "Digite o nome do cliente",
+                                                       "Clínica Saracura - Cancelamento",
+                                                       JOptionPane.QUESTION_MESSAGE);
 
       if(nomeCliente != null){
+        if(Cliente.verificaSeExiste(nomeCliente) == true){
+          ArrayList<Consulta> listaDeConsultas = Consulta.getListaDeConsultas(nomeCliente);
+
+          if(listaDeConsultas.size() >= 1){
+            GUI_Cancelamento_Consulta cancelamentoConsulta = new GUI_Cancelamento_Consulta(nomeCliente);
+          }
+          else{
+            JOptionPane.showMessageDialog(frame,
+                                          "Não existem consultas agendadas para o cliente informado.",
+                                          "Clínica Saracura - Cancelamento",
+                                          JOptionPane.INFORMATION_MESSAGE);
+          }
+        }
+        else{
+          JOptionPane.showMessageDialog(frame,
+                                        "Cliente não cadastrado.",
+                                        "Clínica Saracura - Cancelamento",
+                                        JOptionPane.INFORMATION_MESSAGE);
+        }
       }
     }
     else if(event.getSource() == botaoCancelamentoExame){

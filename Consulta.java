@@ -102,10 +102,10 @@ public class Consulta {
 		return h_disponiveis;
 	}
 
-	public static ArrayList<Consulta> getListaDeConsultas(String nome) {
+	public static ArrayList<Consulta> getListaDeConsultas(String paciente) {
 		ArrayList<Consulta> lista_consultas = new ArrayList<Consulta>();
 		for(Consulta c : consultas)
-			if(c.nome.equals(nome)) lista_consultas.add(c);
+			if(c.paciente.equals(paciente)) lista_consultas.add(c);
 		return lista_consultas;
 	}
 
