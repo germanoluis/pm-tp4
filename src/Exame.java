@@ -11,7 +11,7 @@ public class Exame {
 	private String horario;
 	private String paciente;
 	private String pagamento;
-	private static ArrayList<Exame> exames = new ArrayList();
+	private static ArrayList<Exame> exames = new ArrayList<Exame>();
 
 	public Exame(String nome, String dia, String horario, String paciente, String pagamento, boolean criar) throws Exception {
 		this.nome=nome;
@@ -25,7 +25,7 @@ public class Exame {
 	public static void initializeList() throws Exception {
 		String str;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Exames.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("dados/Exames.txt"));
 			while ((str = br.readLine()) != null) {
 				Exame ex = new Exame(str, str = br.readLine(), str = br.readLine(), str = br.readLine(), str = br.readLine(), false);
 				exames.add(ex);
@@ -49,7 +49,7 @@ public class Exame {
 
 		}
 
-		FileWriter writer = new FileWriter("Exames.txt");
+		FileWriter writer = new FileWriter("dados/Exames.txt");
 		for(Exame exame : exames)
 			try {
 				writer.write(exame.nome + "\n" + exame.dia + "\n" + exame.horario + "\n" + exame.paciente + "\n" + exame.pagamento + "\n");
@@ -59,7 +59,7 @@ public class Exame {
 
 	public static void addExame(Exame ex) throws Exception {
 		exames.add(ex);
-		FileWriter writer = new FileWriter("Exames.txt");
+		FileWriter writer = new FileWriter("dados/Exames.txt");
 		for(Exame exame : exames)
 			try {
 				writer.write(exame.nome + "\n" + exame.dia + "\n" + exame.horario + "\n" + exame.paciente + "\n" + exame.pagamento + "\n");
@@ -71,7 +71,7 @@ public class Exame {
 		String str;
 
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Exames.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("dados/Exames.txt"));
 
 			while ((str = br.readLine()) != null) {
 				if(str.equals(nome)) {
@@ -103,8 +103,11 @@ public class Exame {
 		return h_disponiveis;
 	}
 
-	public static ArrayList<Exame> getListaDeExames() {
-		return exames;
+	public static ArrayList<Exame> getListaDeExames(String paciente) {
+		ArrayList<Exame> lista_exames = new ArrayList<Exame>();
+		for(Exame ex : exames)
+			if(ex.paciente.equals(paciente)) lista_exames.add(ex);
+		return lista_exames;
 	}
 
 	public String getNome() {

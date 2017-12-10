@@ -87,31 +87,41 @@ public class GUI_Cadastro_Cliente implements ActionListener{
 
   public void actionPerformed(ActionEvent event){
     if(event.getSource() == botaoOK){
-      nome = textFieldNome.getText();
-      rg = textFieldRG.getText();
-      cpf = textFieldCPF.getText();
-      endereco = textFieldEndereco.getText();
-      telefone = textFieldTelefone.getText();
-      dataDeNascimento = textFieldDataDeNascimento.getText();
+      if(!textFieldNome.getText().equals("") && !textFieldRG.getText().equals("") &&
+         !textFieldCPF.getText().equals("") && !textFieldEndereco.getText().equals("") &&
+         !textFieldTelefone.getText().equals("") && !textFieldDataDeNascimento.getText().equals("")){
+            nome = textFieldNome.getText();
+            rg = textFieldRG.getText();
+            cpf = textFieldCPF.getText();
+            endereco = textFieldEndereco.getText();
+            telefone = textFieldTelefone.getText();
+            dataDeNascimento = textFieldDataDeNascimento.getText();
 
-      try{
-        Cliente c = new Cliente(nome, rg, cpf, endereco, telefone, dataDeNascimento, false);
+            try{
+              Cliente c = new Cliente(nome, rg, cpf, endereco, telefone, dataDeNascimento, false);
 
-        if(Cliente.addCliente(c) == true){
-          JOptionPane.showMessageDialog(frame,
-                                        "Cliente cadastrado com sucesso!",
-                                        "Clínica Saracura - Cadastro de cliente",
-                                        JOptionPane.INFORMATION_MESSAGE);
-          frame.dispose();
-          GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(c);
-        }
-        else{
-          JOptionPane.showMessageDialog(frame,
-                                        "Cliente já cadastrado. Tente novamente.",
-                                        "Clínica Saracura - Cadastro de cliente",
-                                        JOptionPane.ERROR_MESSAGE);
-        }
-      } catch(Exception e){}
+              if(Cliente.addCliente(c) == true){
+                JOptionPane.showMessageDialog(frame,
+                                              "Cliente cadastrado com sucesso!",
+                                              "Clínica Saracura - Cadastro de cliente",
+                                              JOptionPane.INFORMATION_MESSAGE);
+                frame.dispose();
+                GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(c);
+              }
+              else{
+                JOptionPane.showMessageDialog(frame,
+                                              "Cliente já cadastrado. Tente novamente.",
+                                              "Clínica Saracura - Cadastro de cliente",
+                                              JOptionPane.ERROR_MESSAGE);
+              }
+            } catch(Exception e){}
+      }
+      else{
+        JOptionPane.showMessageDialog(frame,
+                                      "Os campos não foram preenchidos corretamente.",
+                                      "Clínica Saracusa - Agendamento",
+                                      JOptionPane.ERROR_MESSAGE);
+      }
     }
     else if(event.getSource() == botaoCancelar){
       frame.dispose();

@@ -1,5 +1,5 @@
-
 public class Pessoa {
+
 	protected String nome;
 	protected String cpf;
 	protected String rg;
@@ -10,6 +10,7 @@ public class Pessoa {
 	public Pessoa(String nome) {
 		this.nome=nome;
 	}
+
 	public Pessoa(String nome, String rg, String cpf, String endereco, String numero, String nascimento) {
 		this.nome=nome;
 		this.rg=rg;

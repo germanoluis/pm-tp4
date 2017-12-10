@@ -8,7 +8,7 @@ import java.util.Iterator;
 public class Medico extends Pessoa{
 
 	private String especialidade;
-	private static ArrayList<Medico> medicos = new ArrayList();
+	private static ArrayList<Medico> medicos = new ArrayList<Medico>();
 
 	public Medico(String nome, String especialidade, boolean criar) throws Exception {
 		super(nome);
@@ -19,7 +19,7 @@ public class Medico extends Pessoa{
 	public static void initializeList() throws Exception {
 		String str;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Medicos.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("dados/Medicos.txt"));
 			while ((str = br.readLine()) != null) {
 				String[] dados = str.split(",");
 				Medico m = new Medico(dados[0], dados[1], false);
@@ -31,7 +31,7 @@ public class Medico extends Pessoa{
 
 	public static void addMedico(Medico nome) throws Exception {
 		medicos.add(nome);
-		FileWriter writer = new FileWriter("Medicos.txt");
+		FileWriter writer = new FileWriter("dados/Medicos.txt");
 		for(Medico m : medicos)
 			try {
 				writer.write(m.nome + "," + m.especialidade + "\n");
@@ -64,4 +64,5 @@ public class Medico extends Pessoa{
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}
+
 }

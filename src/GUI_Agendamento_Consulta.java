@@ -1,50 +1,68 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
-public class GUI_Agendamento_Exame implements ActionListener{
+public class GUI_Agendamento_Consulta implements ActionListener{
 
   private JFrame frame;
   private Container masterPane;
-  private JPanel panelExame, panelDia, panelHorario, panelTipoAtendimento, panelFormaPagamento, panelRegistroConvenio, panelBotoes;
-  private JLabel labelExame, labelDia, labelHorario, labelTipoAtendimento, labelRegistroConvenio;
+  private JPanel panelEspecialidade, panelMedicos, panelDia, panelHorario, panelBotoes, panelTipoAtendimento, panelFormaPagamento, panelRegistroConvenio;
+  private JLabel labelEspecialidade, labelMedicos, labelDia, labelHorario, labelTipoAtendimento, labelFormaPagamento, labelRegistroConvenio;
   private JTextField textFieldRegistroConvenio;
-  private JComboBox<String> comboBoxExame, comboBoxDia, comboBoxHorario, comboBoxTipoAtendimento;
+  private JButton botaoOK, botaoCancelar;
+  private JComboBox<String> comboBoxEspecialidade, comboBoxMedicos, comboBoxDia, comboBoxHorario, comboBoxTipoAtendimento;
   private ButtonGroup groupFormaPagamento;
   private JRadioButton radioDinheiro, radioCheque, radioCartaoDebito, radioCartaoCredito;
-  private JButton botaoOK, botaoCancelar;
-  private String exame, dia;
-  private String exames[] = new String[] {"",
-                                                  "Radiografia",
-                                                  "Tomografia computadorizada",
-                                                  "Ressonância magnética",
-                                                  "Eletrocardiograma"};
+  private String especialidade, medico, dia, horario, registroConvenio;
+  private String especialidades[] = new String[] {"",
+                                                  "Urologista",
+                                                  "Cardiologista",
+                                                  "Neurologista",
+                                                  "Dermatologista",
+                                                  "Infectologista",
+                                                  "Angiologista",
+                                                  "Nefrologista",
+                                                  "Pediatra",
+                                                  "Psiquiatra",
+                                                  "Otorrinolaringologista",
+                                                  "Ortopedista"};
   private String dias[] = {"",
                            "01", "02", "03", "04", "05",
                            "08", "09", "10", "11", "12",
                            "15", "16", "17", "18", "19", "20",
                            "23", "24", "25", "26", "27", "28"};
   private String tipoAtendimento[] = {"", "Cortesia", "Particular", "Convênio"};
+  private Consulta c;
 
-  public GUI_Agendamento_Exame(Cliente cliente){
+  public GUI_Agendamento_Consulta(Cliente cliente){
     frame = new JFrame("Clínica Saracura - Agendamento");
 
     masterPane = frame.getContentPane();
     masterPane.setLayout(new BoxLayout(masterPane, BoxLayout.Y_AXIS));
 
-    panelExame = new JPanel();
-    panelExame.setAlignmentX(Component.CENTER_ALIGNMENT);
-    labelExame = new JLabel("Exame: ");
-    panelExame.add(labelExame);
-    comboBoxExame = new JComboBox<String>(exames);
-    comboBoxExame.setSelectedIndex(0);
-    panelExame.add(comboBoxExame);
-    comboBoxExame.addActionListener(this);
-    masterPane.add(panelExame);
+    panelEspecialidade = new JPanel();
+    panelEspecialidade.setAlignmentX(Component.CENTER_ALIGNMENT);
+    labelEspecialidade = new JLabel("Especialidade: ");
+    panelEspecialidade.add(labelEspecialidade);
+    comboBoxEspecialidade = new JComboBox<String>(especialidades);
+    comboBoxEspecialidade.setSelectedIndex(0);
+    panelEspecialidade.add(comboBoxEspecialidade);
+    comboBoxEspecialidade.addActionListener(this);
+    masterPane.add(panelEspecialidade);
+
+    panelMedicos = new JPanel();
+    panelMedicos.setAlignmentX(Component.CENTER_ALIGNMENT);
+    labelMedicos = new JLabel("Médico: ");
+    panelMedicos.add(labelMedicos);
+    comboBoxMedicos = new JComboBox<String>();
+    panelMedicos.add(comboBoxMedicos);
+    comboBoxMedicos.addActionListener(this);
+    masterPane.add(panelMedicos);
 
     panelDia = new JPanel();
     panelDia.setAlignmentX(Component.CENTER_ALIGNMENT);
-    labelDia = new JLabel("Dia :");
+    labelDia = new JLabel("Dia: ");
     panelDia.add(labelDia);
     comboBoxDia = new JComboBox<String>();
     panelDia.add(comboBoxDia);
@@ -120,19 +138,34 @@ public class GUI_Agendamento_Exame implements ActionListener{
     botaoCancelar.addActionListener(this);
     masterPane.add(panelBotoes);
 
-    frame.setSize(510, 350);
+    frame.setSize(510, 370);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
 
   public void actionPerformed(ActionEvent event){
-    if(event.getSource() == comboBoxExame){
+    if(event.getSource() == comboBoxEspecialidade){
+      comboBoxMedicos.removeAllItems();
       comboBoxDia.removeAllItems();
       comboBoxHorario.removeAllItems();
 
-      if(comboBoxExame.getSelectedItem().toString() != ""){
-        for(String d : dias){
-          comboBoxDia.addItem(d);
+      comboBoxMedicos.addItem("");
+      if(comboBoxEspecialidade.getSelectedItem().toString() != ""){
+        especialidade = comboBoxEspecialidade.getSelectedItem().toString();
+        for(int i = 0; i < Medico.getMedicosPorEspecialidade(especialidade).size(); i++){
+          comboBoxMedicos.addItem(Medico.getMedicosPorEspecialidade(especialidade).get(i).getNome());
+        }
+      }
+    }
+    else if(event.getSource() == comboBoxMedicos){
+      comboBoxDia.removeAllItems();
+      comboBoxHorario.removeAllItems();
+
+      if(comboBoxMedicos.getSelectedItem() != null){
+        if(comboBoxMedicos.getSelectedItem().toString() != ""){
+          for(String d : dias){
+            comboBoxDia.addItem(d);
+          }
         }
       }
     }
@@ -142,12 +175,12 @@ public class GUI_Agendamento_Exame implements ActionListener{
       comboBoxHorario.addItem("");
       if(comboBoxDia.getSelectedItem() != null){
         if(comboBoxDia.getSelectedItem().toString() != ""){
-          exame = comboBoxExame.getSelectedItem().toString();
+          medico = comboBoxMedicos.getSelectedItem().toString();
           dia = comboBoxDia.getSelectedItem().toString();
           try{
-            for(Exame e : Exame.horariosDisponiveis(exame)){
-              if(e.getDia().equals(dia)){
-                comboBoxHorario.addItem(e.getHorario());
+            for(Consulta c : Consulta.horariosDisponiveis(medico)){
+              if(c.getDia().equals(dia)){
+                comboBoxHorario.addItem(c.getHorario());
               }
             }
           } catch(Exception e){}
@@ -170,102 +203,111 @@ public class GUI_Agendamento_Exame implements ActionListener{
     }
     else if(event.getSource() == botaoOK){
       Cliente cliente = (Cliente)(botaoOK.getClientProperty("Cliente"));
-      if(comboBoxExame.getSelectedItem().toString() != "" &&
+      if(comboBoxEspecialidade.getSelectedItem().toString() != "" &&
+         comboBoxMedicos.getSelectedItem() != null && comboBoxMedicos.getSelectedItem().toString() != "" &&
          comboBoxDia.getSelectedItem() != null && comboBoxDia.getSelectedItem().toString() != "" &&
          comboBoxHorario.getSelectedItem() != null && comboBoxDia.getSelectedItem().toString() != "" &&
          comboBoxTipoAtendimento.getSelectedItem().toString() != ""){
            if(comboBoxTipoAtendimento.getSelectedItem().toString() == "Cortesia"){
              if(Autorizacao.autorizaCortesia() == true){
                try{
-                 Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
-                                         comboBoxDia.getSelectedItem().toString(),
-                                         comboBoxHorario.getSelectedItem().toString(),
-                                         cliente.getNome(),
-                                         "Cortesia",
-                                         true);
+                 Consulta consulta = new Consulta(comboBoxMedicos.getSelectedItem().toString(),
+                                                  comboBoxDia.getSelectedItem().toString(),
+                                                  comboBoxHorario.getSelectedItem().toString(),
+                                                  cliente.getNome(),
+                                                  "Cortesia",
+                                                  true);
                } catch(Exception e){}
                JOptionPane.showMessageDialog(frame,
-                                             "Exame agendado com sucesso!",
+                                             "Consulta agendada com sucesso!",
                                              "Clínica Saracusa - Agendamento",
                                              JOptionPane.INFORMATION_MESSAGE);
+               frame.dispose();
              }
              else{
                JOptionPane.showMessageDialog(frame,
-                                             "Exame não agendado.\n\nCortesia recusada.",
+                                             "Consulta não agendada.\n\nCortesia recusada.",
                                              "Clínica Saracusa - Agendamento",
                                              JOptionPane.ERROR_MESSAGE);
+               frame.dispose();
              }
            }
            else if(comboBoxTipoAtendimento.getSelectedItem().toString() == "Particular"){
              if(groupFormaPagamento.getSelection().getActionCommand() == "Dinheiro"){
                if(Autorizacao.autorizaDinheiro() == true){
                  try{
-                   Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
-                                           comboBoxDia.getSelectedItem().toString(),
-                                           comboBoxHorario.getSelectedItem().toString(),
-                                           cliente.getNome(),
-                                           groupFormaPagamento.getSelection().getActionCommand(),
-                                           true);
+                   Consulta consulta = new Consulta(comboBoxMedicos.getSelectedItem().toString(),
+                                                    comboBoxDia.getSelectedItem().toString(),
+                                                    comboBoxHorario.getSelectedItem().toString(),
+                                                    cliente.getNome(),
+                                                    groupFormaPagamento.getSelection().getActionCommand(),
+                                                    true);
                  } catch(Exception e){}
                  JOptionPane.showMessageDialog(frame,
-                                               "Exame agendado com sucesso!",
+                                               "Consulta agendada com sucesso!",
                                                "Clínica Saracusa - Agendamento",
                                                JOptionPane.INFORMATION_MESSAGE);
+                 frame.dispose();
                }
                else{
                  JOptionPane.showMessageDialog(frame,
-                                               "Exame não agendado.\n\nPagamento não autorizado.",
+                                               "Consulta não agendada.\n\nPagamento não autorizado.",
                                                "Clínica Saracusa - Agendamento",
                                                JOptionPane.ERROR_MESSAGE);
+                 frame.dispose();
                }
              }
              else if(groupFormaPagamento.getSelection().getActionCommand() == "Cheque"){
                if(Autorizacao.autorizaCheque(cliente.getCPF()) == true){
                  try{
-                   Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
-                                           comboBoxDia.getSelectedItem().toString(),
-                                           comboBoxHorario.getSelectedItem().toString(),
-                                           cliente.getNome(),
-                                           groupFormaPagamento.getSelection().getActionCommand(),
-                                           true);
+                   Consulta consulta = new Consulta(comboBoxMedicos.getSelectedItem().toString(),
+                                                    comboBoxDia.getSelectedItem().toString(),
+                                                    comboBoxHorario.getSelectedItem().toString(),
+                                                    cliente.getNome(),
+                                                    groupFormaPagamento.getSelection().getActionCommand(),
+                                                    true);
                  } catch(Exception e){}
                  JOptionPane.showMessageDialog(frame,
-                                               "Exame agendado com sucesso!",
+                                               "Consulta agendada com sucesso!",
                                                "Clínica Saracusa - Agendamento",
                                                JOptionPane.INFORMATION_MESSAGE);
+                 frame.dispose();
                }
                else{
                  JOptionPane.showMessageDialog(frame,
-                                               "Exame não agendado.\n\nRecebimento de cheque não autorizado pelo Serasa para o CPF " + cliente.getCPF() + ".",
+                                               "Consulta não agendada.\n\nRecebimento de cheque não autorizado pelo Serasa para o CPF " + cliente.getCPF() + ".",
                                                "Clínica Saracusa - Agendamento",
                                                JOptionPane.ERROR_MESSAGE);
+                 frame.dispose();
                }
              }
              else{
                if(Autorizacao.autorizaCartao() == true){
                  try{
-                   Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
-                                           comboBoxDia.getSelectedItem().toString(),
-                                           comboBoxHorario.getSelectedItem().toString(),
-                                           cliente.getNome(),
-                                           groupFormaPagamento.getSelection().getActionCommand(),
-                                           true);
+                   Consulta consulta = new Consulta(comboBoxMedicos.getSelectedItem().toString(),
+                                                    comboBoxDia.getSelectedItem().toString(),
+                                                    comboBoxHorario.getSelectedItem().toString(),
+                                                    cliente.getNome(),
+                                                    groupFormaPagamento.getSelection().getActionCommand(),
+                                                    true);
                  } catch(Exception e){}
                  JOptionPane.showMessageDialog(frame,
-                                               "Exame agendado com sucesso!",
+                                               "Consulta agendada com sucesso!",
                                                "Clínica Saracusa - Agendamento",
                                                JOptionPane.INFORMATION_MESSAGE);
+                 frame.dispose();
                }
                else{
                  JOptionPane.showMessageDialog(frame,
-                                               "Exame não agendado.\n\nPagamento não autorizado pela operadora do cartão.",
+                                               "Consulta não agendada.\n\nPagamento não autorizado pela operadora do cartão.",
                                                "Clínica Saracusa - Agendamento",
                                                JOptionPane.ERROR_MESSAGE);
+                 frame.dispose();
                }
              }
            }
            else{
-             if(textFieldRegistroConvenio.getText() == ""){
+             if(textFieldRegistroConvenio.getText().equals("")){
                JOptionPane.showMessageDialog(frame,
                                              "Os campos não foram preenchidos corretamente.",
                                              "Clínica Saracusa - Agendamento",
@@ -274,27 +316,28 @@ public class GUI_Agendamento_Exame implements ActionListener{
              else{
                if(Autorizacao.autorizaConvenio(cliente.getNome(), textFieldRegistroConvenio.getText()) == true){
                  try{
-                   Exame exame = new Exame(comboBoxExame.getSelectedItem().toString(),
-                                           comboBoxDia.getSelectedItem().toString(),
-                                           comboBoxHorario.getSelectedItem().toString(),
-                                           cliente.getNome(),
-                                           "Convênio",
-                                           true);
+                   Consulta consulta = new Consulta(comboBoxMedicos.getSelectedItem().toString(),
+                                                    comboBoxDia.getSelectedItem().toString(),
+                                                    comboBoxHorario.getSelectedItem().toString(),
+                                                    cliente.getNome(),
+                                                    "Convênio",
+                                                    true);
                  } catch(Exception e){}
                  JOptionPane.showMessageDialog(frame,
-                                               "Exame agendado com sucesso!",
+                                               "Consulta agendada com sucesso!",
                                                "Clínica Saracusa - Agendamento",
                                                JOptionPane.INFORMATION_MESSAGE);
+                 frame.dispose();
                }
                else{
                  JOptionPane.showMessageDialog(frame,
-                                               "Exame não agendado.\n\nMarcação de consulta não autorizada pelo operador do convênio.",
+                                               "Consulta não agendada.\n\nMarcação de consulta não autorizada pelo operador do convênio.",
                                                "Clínica Saracusa - Agendamento",
                                                JOptionPane.ERROR_MESSAGE);
+                 frame.dispose();
                }
              }
            }
-           frame.dispose();
       }
       else{
         JOptionPane.showMessageDialog(frame,

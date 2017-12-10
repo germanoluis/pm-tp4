@@ -11,7 +11,7 @@ public class Consulta {
 	private String horario;
 	private String paciente;
 	private String pagamento;
-	private static ArrayList<Consulta> consultas = new ArrayList();
+	private static ArrayList<Consulta> consultas = new ArrayList<Consulta>();
 
 	public Consulta(String nome, String dia, String horario, String paciente, String pagamento, boolean criar) throws Exception {
 		this.nome=nome;
@@ -25,7 +25,7 @@ public class Consulta {
 	public static void initializeList() throws Exception {
 		String str;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Consultas.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("dados/Consultas.txt"));
 			while ((str = br.readLine()) != null) {
 				Consulta c = new Consulta(str, str = br.readLine(), str = br.readLine(), str = br.readLine(), str = br.readLine(), false);
 				consultas.add(c);
@@ -48,7 +48,7 @@ public class Consulta {
 
 		}
 
-		FileWriter writer = new FileWriter("Consultas.txt");
+		FileWriter writer = new FileWriter("dados/Consultas.txt");
 		for(Consulta consulta : consultas)
 			try {
 				writer.write(consulta.nome + "\n" + consulta.dia + "\n" + consulta.horario + "\n" + consulta.paciente + "\n" + consulta.pagamento + "\n");
@@ -58,7 +58,7 @@ public class Consulta {
 
 	public static void addConsulta(Consulta c) throws Exception {
 		consultas.add(c);
-		FileWriter writer = new FileWriter("Consultas.txt");
+		FileWriter writer = new FileWriter("dados/Consultas.txt");
 		for(Consulta consulta : consultas)
 			try {
 				writer.write(consulta.nome + "\n" + consulta.dia + "\n" + consulta.horario + "\n" + consulta.paciente + "\n" + consulta.pagamento + "\n");
@@ -70,7 +70,7 @@ public class Consulta {
 		String str;
 
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Consultas.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("dados/Consultas.txt"));
 
 			while ((str = br.readLine()) != null) {
 				if(str.equals(nome)) {

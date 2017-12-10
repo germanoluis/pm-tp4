@@ -64,25 +64,27 @@ public class GUI_Inicio implements ActionListener{
                                                       JOptionPane.QUESTION_MESSAGE);
 
       if(cpfCliente != null){
-        Cliente cliente = new Cliente("", "", cpfCliente, "", "", "", false);
+        try{
+          Cliente cliente = new Cliente("", "", cpfCliente, "", "", "", false);
 
-        if(Cliente.verificaSeExiste(cliente) == true){
-          ArrayList<Cliente> listaDeClientes = Cliente.getListaDeClientes();
-          for(Cliente c : listaDeClientes){
-            if(c.getCPF().equals(cliente.getCPF())){
-              cliente = c;
+          if(Cliente.verificaSeExiste(cliente) == true){
+            ArrayList<Cliente> listaDeClientes = Cliente.getListaDeClientes();
+            for(Cliente c : listaDeClientes){
+              if(c.getCPF().equals(cliente.getCPF())){
+                cliente = c;
+              }
             }
-          }
 
-          GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(cliente);
-        }
-        else{
-          JOptionPane.showMessageDialog(frame,
-                                        "Cliente não cadastrado.",
-                                        "Clínica Saracura - Agendamento",
-                                        JOptionPane.INFORMATION_MESSAGE);
-          GUI_Cadastro_Cliente cadastroCliente = new GUI_Cadastro_Cliente();
-        }
+            GUI_Tipo_Atendimento tipoAtendimento = new GUI_Tipo_Atendimento(cliente);
+          }
+          else{
+            JOptionPane.showMessageDialog(frame,
+                                          "Cliente não cadastrado.",
+                                          "Clínica Saracura - Agendamento",
+                                          JOptionPane.INFORMATION_MESSAGE);
+            GUI_Cadastro_Cliente cadastroCliente = new GUI_Cadastro_Cliente();
+          }
+        } catch(Exception e){}
       }
     }
     else if(event.getSource() == botaoCancelamentoConsulta){
@@ -114,6 +116,32 @@ public class GUI_Inicio implements ActionListener{
       }
     }
     else if(event.getSource() == botaoCancelamentoExame){
+      String nomeCliente = JOptionPane.showInputDialog(frame,
+                                                       "Digite o nome do cliente",
+                                                       "Clínica Saracura - Cancelamento",
+                                                       JOptionPane.QUESTION_MESSAGE);
+
+      if(nomeCliente != null){
+        if(Cliente.verificaSeExiste(nomeCliente) == true){
+          ArrayList<Exame> listaDeExames = Exame.getListaDeExames(nomeCliente);
+
+          if(listaDeExames.size() >= 1){
+            GUI_Cancelamento_Exame cancelamentoExame = new GUI_Cancelamento_Exame(nomeCliente);
+          }
+          else{
+            JOptionPane.showMessageDialog(frame,
+                                          "Não existem exames agendados para o cliente informado.",
+                                          "Clínica Saracura - Cancelamento",
+                                          JOptionPane.INFORMATION_MESSAGE);
+          }
+        }
+        else{
+          JOptionPane.showMessageDialog(frame,
+                                        "Cliente não cadastrado.",
+                                        "Clínica Saracura - Cancelamento",
+                                        JOptionPane.INFORMATION_MESSAGE);
+        }
+      }
     }
     else if(event.getSource() == botaoFechar){
       System.exit(0);

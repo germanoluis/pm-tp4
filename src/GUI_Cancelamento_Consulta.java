@@ -10,9 +10,9 @@ public class GUI_Cancelamento_Consulta implements ActionListener{
   private JPanel panelConsulta, panelBotoes;
   private JLabel labelConsulta;
   private JButton botaoOK, botaoCancelar;
-  private JList listConsultas;
+  private JList<String> listConsultas;
   private JScrollPane scrollPaneConsulta;
-  private DefaultListModel listModel;
+  private DefaultListModel<String> listModel;
   private ArrayList<Consulta> listaDeConsultas, listaDeConsultasPaciente;
 
   public GUI_Cancelamento_Consulta(String nomeCliente){
@@ -29,9 +29,9 @@ public class GUI_Cancelamento_Consulta implements ActionListener{
       }
     }
 
-    listModel = new DefaultListModel();
+    listModel = new DefaultListModel<String>();
     for(Consulta c : listaDeConsultasPaciente){
-      listModel.addElement(c.getPaciente() + " - Dia " + c.getDia() + " - " + c.getHorario() + " - Dr(a). " + c.getNome());
+      listModel.addElement("Dia " + c.getDia() + " - " + c.getHorario() + " - Dr(a). " + c.getNome());
     }
 
     panelConsulta = new JPanel();
@@ -39,7 +39,7 @@ public class GUI_Cancelamento_Consulta implements ActionListener{
     labelConsulta = new JLabel("Selecione a consulta a ser cancelada:");
     labelConsulta.setAlignmentX(Component.CENTER_ALIGNMENT);
     panelConsulta.add(labelConsulta);
-    listConsultas = new JList(listModel);
+    listConsultas = new JList<String>(listModel);
     listConsultas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     listConsultas.setSelectedIndex(0);
     listConsultas.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -54,7 +54,6 @@ public class GUI_Cancelamento_Consulta implements ActionListener{
     botaoOK.setPreferredSize(new Dimension(120, 35));
     botaoOK.setMaximumSize(new Dimension(120, 35));
     panelBotoes.add(botaoOK);
-    //botaoOK.putClientProperty("Cliente", cliente);
     botaoOK.addActionListener(this);
     botaoCancelar = new JButton("Cancelar");
     botaoCancelar.setPreferredSize(new Dimension(120, 35));

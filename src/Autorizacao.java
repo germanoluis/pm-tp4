@@ -1,4 +1,5 @@
 public class Autorizacao {
+
 	private static int pedidos_cortesia = 0;
 	private static int pedidos_convenio = 0;
 
@@ -27,4 +28,5 @@ public class Autorizacao {
 		else if(Math.random()>0.5) return true;
 		else return false;
 	}
+
 }

@@ -1,0 +1,6 @@
+Chandler Bing,Cardiologista
+Joey Tribbiani,Neurologista
+Phoebe Buffay,Neurologista
+Rachel Green,Psiquiatra
+Monica Geller,Pediatra
+Ross Geller,Urologista

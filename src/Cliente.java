@@ -9,22 +9,20 @@ import java.util.ArrayList;
 
 public class Cliente extends Pessoa{
 
-	private static ArrayList<Cliente> clientes = new ArrayList();
+	private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
-	public Cliente(String nome, String rg, String cpf, String endereco, String numero, String nascimento, boolean criar) {
+	public Cliente(String nome, String rg, String cpf, String endereco, String numero, String nascimento, boolean criar) throws Exception {
 		super(nome, rg, cpf, endereco, numero, nascimento);
-		try{
-			if(criar)addCliente(this);
-		} catch(IOException e) {}
+		if(criar)addCliente(this);
 	}
 
 	public static void initializeList() throws Exception {
 		String str;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Clientes.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("dados/Clientes.txt"));
 			while ((str = br.readLine()) != null) {
 				String[] dados = str.split(",");
-				Cliente c = new Cliente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], true);
+				Cliente c = new Cliente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], false);
 				clientes.add(c);
 			}
 		} catch (Exception e) {}
@@ -33,7 +31,7 @@ public class Cliente extends Pessoa{
 	public static boolean addCliente(Cliente cli) throws IOException {
 		if(!verificaSeExiste(cli)) {
 			clientes.add(cli);
-			FileWriter writer = new FileWriter("Clientes.txt");
+			FileWriter writer = new FileWriter("dados/Clientes.txt");
 			for(Cliente c : clientes)
 				try {
 					writer.write(c.nome + "," + c.rg + "," + c.cpf + "," + c.endereco + "," + c.numero + "," + c.nascimento + "\n");
